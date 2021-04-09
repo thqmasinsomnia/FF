@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Add"
+        android:text="Add to Fridge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expDate" />
@@ -48,31 +48,33 @@
         android:id="@+id/scanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:text="Scan"
+        android:layout_marginTop="204dp"
+        android:text="Scan UPC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expDate" />
 
-    <TextureView
-        android:id="@+id/view_finder"
-        android:layout_width="600px"
-        android:layout_height="420px"
-        android:layout_marginTop="96dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addButton"
-        app:layout_constraintVertical_bias="0.182" />
-
-    <TextView
-        android:id="@+id/upc"
+    <Button
+        android:id="@+id/loaditem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/view_finder"
-        app:layout_constraintEnd_toEndOf="@+id/view_finder"
-        app:layout_constraintStart_toStartOf="@+id/view_finder"
-        app:layout_constraintTop_toTopOf="@+id/view_finder" />
+        android:text="Load UPC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scanButton"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="then click"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scanButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
