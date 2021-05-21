@@ -25,6 +25,11 @@ import com.google.zxing.integration.android.IntentIntegrator
 import okhttp3.*
 import org.w3c.dom.Text
 import java.io.IOException
+import java.util.*
+import android.app.DatePickerDialog
+import android.widget.DatePicker
+import java.text.SimpleDateFormat
+import javax.xml.datatype.DatatypeConstants.MONTHS
 
 
 class AddFragment : Fragment() {
@@ -34,10 +39,17 @@ class AddFragment : Fragment() {
     var upc = ""
     var itemname = "Item Name"
 
-    var foundItem = false
+    val c = Calendar.getInstance()
+    val year = c.get(Calendar.YEAR)
+    val month = c.get(Calendar.MONTH)
+    val day = c.get(Calendar.DAY_OF_MONTH)
 
+    var mYear = year
+    var mMonth = month + 1
+    var mDay = day
 
     override fun onCreateView(
+
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
@@ -57,11 +69,43 @@ class AddFragment : Fragment() {
             scanner.initiateScan()
         }
 
+
+        // this is to move the itemname into the itemName EditText since it doesnt do it automatically after scanning the UPC
         view.findViewById<Button>(R.id.loaditem).setOnClickListener(){
             println("stupid fix")
             view?.findViewById<EditText>(R.id.itemName)?.setText(itemname)
 
         }
+
+
+        // ISSUE
+        // why do I have to call this twice to update the date in the expDate textview???
+
+        view.findViewById<TextView>(R.id.expDate).setOnClickListener(){
+            val dpd = activity?.let { it1 ->
+                DatePickerDialog(it1, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                    val mon = monthOfYear +1
+
+                    mMonth = mon
+                    mDay = dayOfMonth
+                    mYear = year
+
+                    // Display Selected date in textbox
+                    view?.findViewById<EditText>(R.id.expDate)?.setText("" + mMonth + "/" + mDay + "/" + mYear)
+
+                }, year, month, day)
+
+            }
+
+            if (dpd != null) {
+                dpd.show()
+                view?.findViewById<EditText>(R.id.expDate)?.setText("" + mMonth + "/" + mDay + "/" + mYear)
+            }
+
+        }
+
+
 
         return view
     }
@@ -157,6 +201,8 @@ class AddFragment : Fragment() {
         })
 
     }
+
+
 
 
 
